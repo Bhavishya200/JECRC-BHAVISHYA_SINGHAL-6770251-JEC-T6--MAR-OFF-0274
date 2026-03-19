@@ -10,21 +10,22 @@ opts = webdriver.ChromeOptions()
 opts.add_experimental_option('detach', True)
 driver = webdriver.Chrome(options=opts)
 
-driver.get("https://abc.com/")
+driver.get('https://demo.mobiscroll.com/select/multiple-select')
 driver.maximize_window()
 
-# driver.implicitly_wait(1)
-# ele = driver.find_element(By.XPATH,'(//a[@class="AnchorLink"]/parent::li/descendant::img)[1]')
-# print(ele.get_attribute("src"))
+multi_drop = driver.find_element(By.ID,'multiple-select-select')
+select = Select(multi_drop)
 
-wait = WebDriverWait(driver, 10)
-
-loading_circle = wait.until(EC.invisibility_of_element_located((By.ID,'preloader-animated_svg__svg3')))
-
-title_abc = driver.find_element(By.XPATH,'//span[text()="ABC SHOWS, SPECIALS & MORE"]')
-
-assert 'SPECIALS' in title_abc.text, 'not found'
-print('working fine')
+if select.is_multiple:
+    select.select_by_value('8')
+    select.select_by_index(6)
+    select.select_by_visible_text('8')
+    select.select_by_visible_text('Movies, Music & Games')
+sleep(5)
+select.deselect_by_index(6)
+select.deselect_all()
+print(select.first_selected_option)
+print(select.all_selected_options)
 
 driver.quit()
 
