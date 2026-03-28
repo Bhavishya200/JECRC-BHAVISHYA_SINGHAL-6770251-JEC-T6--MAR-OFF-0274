@@ -10,22 +10,22 @@ driver.get('https://the-internet.herokuapp.com/windows')
 driver.maximize_window()
 sleep(2)
 
-parent_handle = driver.current_window_handle
-
-driver.find_element(By.XPATH,'//a[text()="Click Here"]').click()
-sleep(2)
-
-all_windows = driver.window_handles
-print(len(all_windows))
-
-driver.switch_to.window(all_windows[1]) #you can also use -1 it give same result
-
-assert 'New' in driver.find_element(By.CLASS_NAME,'example').text
-print('done')
-driver.close()
-
-driver.switch_to.window(parent_handle)
-sleep(2)
+# parent_handle = driver.current_window_handle
+#
+# driver.find_element(By.XPATH,'//a[text()="Click Here"]').click()
+# sleep(2)
+#
+# all_windows = driver.window_handles
+# print(len(all_windows))
+#
+# driver.switch_to.window(all_windows[1]) #you can also use -1 it give same result
+#
+# assert 'New' in driver.find_element(By.CLASS_NAME,'example').text
+# print('done')
+# driver.close()
+#
+# driver.switch_to.window(parent_handle)
+# sleep(2)
 
 #opening a website in new window
 
